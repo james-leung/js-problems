@@ -1,6 +1,6 @@
 const combinationSum = (candidates, target) => {
   res = [];
-  candidates.sort();
+  candidates.sort((x, y) => x - y, 0);
 
   let n = candidates.length;
 
@@ -20,4 +20,4 @@ const combinationSum = (candidates, target) => {
   return res;
 };
 
-console.log(combinationSum([2, 3, 6], 9));
+console.log(combinationSum([3, 12, 9, 11, 6, 7, 8, 5, 4], 15));
