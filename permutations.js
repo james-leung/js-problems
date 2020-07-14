@@ -1,19 +1,14 @@
-var permutations = function (nums) {
-  var results = [];
+var permute = function (nums) {
+  let results = [];
 
-  function permute(arr, memo) {
-    memo = memo || [];
-
-    for (var i = 0; i < arr.length; i++) {
-      let cur = arr.splice(i, 1);
-      if (arr.length === 0) results.push(memo.concat(cur));
-      permute(arr.slice(), memo.concat(cur));
-      arr.splice(i, 0, cur[0]);
-    }
+  const permuteNums = (arr, nums) => {
+    if (arr.length === nums.length) results.push(arr);
+    for (let n of nums.filter((x) => arr.indexOf(x) < 0)) 
+      permuteNums(arr.concat(n), nums);
     return results;
-  }
-  return permute(nums);
+  };
+  return permuteNums([], nums);
 };
 
-let perms = permutations(["1", "2", "3"]);
+let perms = permute([0, 1, 2, 3]);
 console.log(perms);
