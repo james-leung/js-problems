@@ -1,56 +1,36 @@
-var exist = function (board, word) {
-  let c = word[0];
-  let coords = [];
-  let paths = [];
-  for (let i = 0; i < board.length; i++) {
-    let j = board[i].indexOf(c);
-    if (j > -1) coords.push([i, j]);
-  }
-
-  const findNextLetter = (coord, path, n) => {
-    let [i, j] = coord;
-    path.push(coord);
-    if (path.length === word.length) paths.push(path);
-
-    n++;
-
-    if (
-      j + 1 < board[0].length &&
-      board[i][j + 1] === word[n] &&
-      checkNoRepeat([i, j + 1], path)
-    ) {
-      findNextLetter([i, j + 1], path.slice(), n);
+function exist(board, word) {
+  for (let i = 0; i < board.length; i++)
+    for (let j = 0; j < board[0].length; j++) {
+      if (findNextLetter(board, i, j, word, 0)) return true;
     }
-    if (
-      i + 1 < board.length &&
-      board[i + 1][j] === word[n] &&
-      checkNoRepeat([i + 1, j], path)
-    ) {
-      findNextLetter([i + 1, j], path.slice(), n);
-    }
-    if (
-      j - 1 >= 0 &&
-      board[i][j - 1] === word[n] &&
-      checkNoRepeat([i, j - 1], path)
-    ) {
-      findNextLetter([i, j - 1], path.slice(), n);
-    }
-    if (
-      i - 1 >= 0 &&
-      board[i - 1][j] === word[n] &&
-      checkNoRepeat([i - 1, j], path)
-    ) {
-      findNextLetter([i - 1, j], path.slice(), n);
-    }
-  };
+  return false;
+}
 
-  const checkNoRepeat = (coord, path) => {
-    return !path.find((x) => x[0] === coord[0] && x[1] === coord[1]);
-  };
+function findNextLetter(board, i, j, word, ind) {
+  if (ind === word.length) return true;
+  if (
+    i > board.length - 1 ||
+    i < 0 ||
+    j < 0 ||
+    j > board[0].length - 1 ||
+    board[i][j] !== word.charAt(ind)
+  )
+    return false;
+  board[i][j] = "*";
+  let result =
+    findNextLetter(board, i - 1, j, word, ind + 1) ||
+    findNextLetter(board, i, j - 1, word, ind + 1) ||
+    findNextLetter(board, i, j + 1, word, ind + 1) ||
+    findNextLetter(board, i + 1, j, word, ind + 1);
+  board[i][j] = word.charAt(ind);
+  return result;
+}
 
-  for (let coord of coords) {
-    findNextLetter(coord, [], 0);
-  }
+let board = [
+  ["A", "B", "C", "E"],
+  ["S", "F", "C", "S"],
+  ["A", "D", "E", "E"],
+];
+let word = "ABCESCFSADEE";
 
-  return paths.length > 0;
-};
+console.log(exist(board, word));
