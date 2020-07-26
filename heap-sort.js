@@ -21,6 +21,7 @@ const heapify = (a, n, j) => {
   let rightVal = right < n ? a[right] : a[j];
   max = a.indexOf(Math.max(a[j], leftVal, rightVal));
 
+  // Decide whether to swap parent and child element based on size
   if (max !== j) {
     [a[j], a[max]] = [a[max], a[j]];
     heapify(a, n, max);
