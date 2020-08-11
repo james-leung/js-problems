@@ -1,3 +1,5 @@
+// Breadth-first search (BFS)
+
 // Find whether graph is acyclic
 var canFinish = function (root) {
   let queue = [root];

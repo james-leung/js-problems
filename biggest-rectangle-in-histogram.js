@@ -1,7 +1,7 @@
 // See https://www.youtube.com/watch?v=zx5Sw9130L0&feature=emb_title
 
 var largestRectangleArea = function(heights) {
-  // to deal with last element without going out of bound
+
   heights.push(0)
   const stack = [];
   let maxArea = 0, curr, currH, top, topH, area;
