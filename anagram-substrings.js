@@ -2,8 +2,12 @@ function findAnagrams(s, p) {
   let left = 0;
   let right = 0;
   let matchSize = p.length;
+
+  // Create count for char codes
   let map = new Array(256).fill(0);
   let res = [];
+
+  // Split the string
   for (let c of p.split("")) map[c.charCodeAt(0)]++;
 
   while (right < s.length) {

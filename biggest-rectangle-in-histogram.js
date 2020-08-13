@@ -1,14 +1,19 @@
 // See https://www.youtube.com/watch?v=zx5Sw9130L0&feature=emb_title
 
 var largestRectangleArea = function(heights) {
-  // to deal with last element without going out of bound
+  
   heights.push(0)
-  const stack = [];
+  // Stack of indices
+  let stack = [];
   let maxArea = 0, curr, currH, top, topH, area;
   
+  // Loop over heights array
   for(let i = 0; i < heights.length; i++) {
+      // Index of top height of array
       top = stack[stack.length-1];
+      // Top height of array
       topH = heights[top];
+
       // pop from stack as long as the top of the stack
       // is greater than the current height and
       // the stack has at least 2 items

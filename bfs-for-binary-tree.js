@@ -20,6 +20,7 @@ function TreeNode(val) {
   this.left = this.right = null;
 }
 
+// Example
 let a = new TreeNode(3);
 a.left = new TreeNode(4);
 a.right = new TreeNode(5);
