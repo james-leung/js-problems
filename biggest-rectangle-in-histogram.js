@@ -1,7 +1,11 @@
 // See https://www.youtube.com/watch?v=zx5Sw9130L0&feature=emb_title
 
 var largestRectangleArea = function(heights) {
+<<<<<<< HEAD
   
+=======
+
+>>>>>>> 31e6fc6b635b03adfcfc775eb9a3833e3ccb0ce2
   heights.push(0)
   // Stack of indices
   let stack = [];
